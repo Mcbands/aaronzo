@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light  d-flex justify-content-between">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="/">
+                <img src="../../static/images/bevents-inverse.jpg" height="60" width="100" alt="Bbune Events">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
+        <div class="collapse navbar-collapse mx-4" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a> {% if not request.user.is_authenticated %}
+                <a class="nav-link text-dark d-flex" href="{% url 'sign_up' %}"><i class="fa-solid fa-user-plus mx-2 mt-1"></i>Register</a>
+                <a class="nav-link text-dark d-flex" href="{% url 'login' %}"><i class="fa-solid fa-user-plus mx-2 mt-1"></i>Login</a> {% else %}
+                <a class="nav-link text-dark d-flex" href="{% url 'logout' %}"><i class="fa-solid fa-user-plus mx-2 mt-1"></i>Logout</a>
+                <a class="nav-link text-dark d-flex" href="{% url 'dashboard' %}">dashbaord</a> {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% block contents %} {% endblock %}
+
+    <footer class="mt-auto p-2 bg-light">
+
+        <div class="text-center ">
+            <span>
+                Copyright &copy; <script>document.write(new Date().getFullYear())</script>
+            Big Dream Group | Davies Chibesa Chisala.</span>
+        </div>
+    </footer>
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Add this script to handle confirmation -->
+    <script>
+        // Function to display the confirmation dialog
+        function confirmLogout() {
+            return confirm("Are you sure you want to logout?");
+        }
+    </script>
+
+</body>
+
+</html>

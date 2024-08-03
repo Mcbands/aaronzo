@@ -1,0 +1,115 @@
+/* .hero {
+    background-image: url("../../images/truck.jpg");
+    background-size: cover;
+    height: 100vh;
+} */
+
+.hero-about {
+    background-image: url("../../images/truck.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 100px 0 0 0;
+    height: 100vh;
+}
+
+.navbar {
+    background-color: #ffffff;
+}
+
+body {
+    background-image: url("../../images/truck.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-section {
+    background-image: url("../../images/truck.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0 0 0;
+    height: 100vh;
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.hero-section p {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.btn-dark {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+.register-form {
+    background-color: #fff;
+}
+
+.logo {
+    width: 100%;
+    margin-top: -150px;
+}
+
+@media(max-width: 768px) {
+    .logo {
+        display: none;
+    }
+    form {
+        margin: 0 20px 0 20px;
+    }
+}
+
+
+/* Custom styles for the contact details div */
+
+.contact-container {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details {
+    margin-top: 20px;
+}
+
+.contact-details h3 {
+    color: #007bff;
+}
+
+.contact-details p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #343a40;
+}
+
+.logo-image {
+    height: 200px;
+    width: 200px;
+    border-radius: 60%;
+}
+
+#dashboard {
+    height: 200vh;
+}
+
+@media(max-width:768px) {
+    #dashbaord {
+        height: 300vh;
+    }
+}

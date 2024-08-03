@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block title %} Contact us {% endblock%} {% block content %}
+<div class="container-fluid bg-light" style="height: 100vh;">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'dashboard' %}">
+                            Dashbaord
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            Profile
+                        </a>
+                    </li>
+                    {% comment %} <li class="nav-item">
+                        <a class="nav-link" href="{% url 'bookings' %}">
+                            Bookings
+                        </a>
+                    </li>
+                    {% if request.user.user_type == 2%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tickets' %}">
+                            Tickets
+                        </a>
+                    </li> {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'event_list' %}">
+                            Events
+                        </a>
+                    </li>
+                    {%endif%}
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main content area -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            {% if user.user_type %} {% if user_tickets %}
+            <div id="user-tickets" class="my-4">
+                <h2>Your Tickets</h2>
+                <!-- User Tickets content goes here -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th>Event</th>
+                                <th>Ticket Type</th>
+                                <th>Total Quantity</th>
+                                <th>Sold Quantity</th>
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ticket in user_tickets %}
+                            <tr>
+                                <td>{{ ticket.event.title }}</td>
+                                <td>{{ ticket.ticket_type }}</td>
+                                <td>{{ ticket.total_quantity }}</td>
+                                <td>{{ ticket.sold_quantity }}</td>
+                                <!-- Add more cells as needed -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %} {% endif %}
+
+
+
+
+
+        </main>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

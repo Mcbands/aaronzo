@@ -1,0 +1,125 @@
+{% extends 'base.html' %} {% block title %} Contact us {% endblock%} {% block content %}
+<div class="container-fluid bg-light" style="width: 100vhs;">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'dashboard' %}">
+                            Dashbaord
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            Profile
+                        </a>
+                    </li>
+                    {% comment %} <li class="nav-item">
+                        <a class="nav-link" href="{% url 'bookings' %}">
+                            Bookings
+                        </a>
+                    </li> {% endcomment %}
+                    {% if request.user.user_type == 2%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tickets' %}">
+                            Tickets
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'event_list' %}">
+                            Events
+                        </a>
+                    </li>
+                    {%endif%}
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main content area -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">User Dashboard</h1>
+            </div>
+
+            <div class="row">
+                <!-- Profile Card -->
+                <div class="col-md-6">
+                    <div class="card my-4">
+                        <div class="card-header">
+                            <h2>Profile</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>Welcome, {{ user.first_name }} {{ user.last_name }} {{ request.user.user_type }}!</p>
+                            <p>Email: {{ user.email }}</p>
+                            <!-- Add other profile information as needed -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bookings Card -->
+                <div class="col-md-6">
+                    <div class="card my-4">
+                        <div class="card-header">
+                            <h2>Bookings</h2>
+                        </div>
+                        <div class="card-body">
+                            {% if bookings %}
+                            <ul>
+                                {% for booking in bookings %}
+                                <li>{{ booking.event.title }} - {{ booking.num_tickets }} tickets</li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <p>No bookings yet.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Tickets Card -->
+                {% if user.user_type == 2 %} {% if user_tickets %}
+                <div class="col-md-6">
+                    <div class="card my-4">
+                        <div class="card-header">
+                            <h2>Your Tickets</h2>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                {% for ticket in user_tickets %}
+                                <li>{{ ticket.event.title }} - {{ ticket.ticket_type }} - {{ ticket.total_quantity }} tickets</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Events Created Card -->
+                <div class="col-md-6">
+                    <div class="card my-4">
+                        <div class="card-header">
+                            <h2>Events Created</h2>
+                        </div>
+                        <div class="card-body">
+                            {% if events_created %}
+                            <ul>
+                                {% for event in events_created %}
+                                <li>{{ event.title }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <p>No events created yet.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </main>
+
+
+
+
+
+        {% endblock %}

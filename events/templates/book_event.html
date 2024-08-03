@@ -1,0 +1,27 @@
+{%extends 'main.html'%} {% block title %} Book Event {% endblock %} {% load crispy_forms_tags %} {% block contents %}
+
+
+<div class="mx-5 p-5">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Event Prices</h2>
+            <p>VIP Price: {{ vip_price }}</p>
+            <p>Regular Price: {{ regular_price }}</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Available Tickets</h2>
+            <p>VIP Tickets: {{ available_tickets.VIP }}</p>
+            <p>Regular Tickets: {{ available_tickets.Regular }}</p>
+        </div>
+    </div>
+
+    <!-- Your existing form code here -->
+    <form method="post" class="shadow bg-light text-dark p-5" action="{% url 'book_event' event.id %}">
+        {% csrf_token %}{{form|crispy}}
+        <button type="submit" class="btn btn-dark">Book Tickets</button>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <style>
+        .card-img-top {
+            height: 200px;
+            width: 100%;
+        }
+        
+        .events_hero {
+            background-image: url("../../static/images/events.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0 0 0;
+            height: 50vh;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light  d-flex justify-content-between">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="/">
+                <img src="../../static/images/bevents-inverse.jpg" height="60" width="100" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
+        <div class="collapse navbar-collapse mx-4 " id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="{% url 'about' %}">About</a> {% if user_account_type %} {% if user_account_type == 'Event Provider' or user_account_type == 'Admin' %}
+                <a class="nav-link" href="{% url 'create_event' %}">CreateEvent</a>
+                <a class="nav-link" href="{% url 'create_ticket' %}">Tickets</a> {% endif %} {% endif %}
+
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a> {% if not request.user.is_authenticated %}
+                <a class="nav-link text-dark d-flex" href="{% url 'sign_up' %}"><i class="fa-solid fa-user-plus mx-2 mt-1"></i>Register</a>
+                <a class="nav-link text-dark d-flex" href="{% url 'login' %}"><i class="fa-solid fa-user-plus mx-2 mt-1"></i>Login</a> {% else %}
+                <a class="nav-link text-dark d-flex" href="{% url 'logout' %}"><i class="fa-solid fa-user-plus mx-2 mt-1"></i>Logout</a>
+                <a href="{% url 'dashboard' %}" class="nav-link text-dark">Dashboard</a> {% endif %}
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="container mt-5">
+        <div class="text-center events_hero">
+            <h2>Welcome to the Heartbeat of our Calendar</h2>
+            <p>Discover a tapestry of experiences, moments, and memories in our vibrant events showcase. From captivating concerts to educational trainings and the enchantment of weddings, explore a world where every occasion tells a unique story.</p>
+        </div>
+    
+        {% for event_type, events in grouped_events.items %}
+            <h3 class="my-2 p-3">{{ event_type }}</h3>
+    
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {% for event in events %}
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            {% if event.image %}
+                                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ event.title }}</h5>
+                                <p class="card-text">{{ event.description }}</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Date: {{ event.date }}</li>
+                                    <li class="list-group-item">Time: {{ event.time }}</li>
+                                    <li class="list-group-item">Location: {{ event.location }}</li>
+                                    <li class="list-group-item" style="font-size: 12px; font-weight: bold;">
+                                        Total VIP Tickets: {{ event.num_available_tickets.VIP }} Total Regular Tickets: {{ event.num_available_tickets.Regular }}
+                                    </li>
+                                </ul>
+                                <a href="{% url 'book_event' event.id %}" class="btn btn-dark mt-2">Buy Ticket</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    
+    <footer class="mt-auto p-2 bg-light">
+
+        <hr>
+        <!-- Copyright and Year -->
+        <h3 style="text-align: center;">Contact US</h3>
+
+        <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #3b5998;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+    
+          <!-- Twitter -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #55acee;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-twitter"></i
+          ></a>
+    
+          <!-- Google -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #dd4b39;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-google"></i
+          ></a>
+    
+          <!-- Instagram -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #ac2bac;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-instagram"></i
+          ></a>
+    
+          <!-- Linkedin -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #0082ca;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <!-- Github -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #333333;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <div class="text-center">
+            <span>
+                Copyright &copy; <script>document.write(new Date().getFullYear())</script>
+                Bbune-Events | Joel Bbune.
+            </span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{%extends 'base.html'%} {% block title %} Sign in {% endblock %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="container">
+    <div class="row justify-content-around align-items-center shadow rounded register-form m-5">
+        <div class="col-md-4">
+            <img src="../../../static/images/logo.png" alt="" class="logo">
+        </div>
+        <div class="col-md-8">
+            <form method="post" class="text-dark p-5 mt-3 rounded ">
+                <h1 class="text-center text-dark">
+                    Sign in
+                </h1>
+                {% csrf_token %}{{form|crispy}}
+                <p>Don't have an account? Create one <a href="/sign-up" class="text-primary">Here</a>!</p>
+                <button type="submit" class="btn btn-dark">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

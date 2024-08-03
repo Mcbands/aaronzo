@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block title %} About us {% endblock%} {% block content %}
+
+
+<div class="hero-about">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center mb-4 text-light">About Us</h2>
+            
+            <body style="background-image: url('/images/truck.jpg'); background-size: cover; background-position: center;">
+                <!-- Your content here -->
+            </body>
+            
+
+
+            <!-- Bootstrap 5 Accordion for FAQs -->
+            <div class="accordion" id="accordionExample">
+
+                <!-- FAQ 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What is Big Dream Group?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Big Dream Is A Group Of Companies Consisting of many companies offering a number of services.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How can I get in touch?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Creating an account with big dream is easy!Open the big dream web page on any platform (eg. edge, chrome, firefox), and click on Log-in then fill in your details, and we'll respond to you as soon as possible.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more FAQs as needed -->
+
+            </div>
+            <!-- End Bootstrap 5 Accordion -->
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
